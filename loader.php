@@ -4,10 +4,11 @@
  * Plugin URI: https://themekraft.com/products/ultimate-member/
  * Description: Extend Ultimate Member Profiles with BuddyForms
  * Version: 1.3.18
+ * Requires at least: 5.9
+ * Requires PHP: 7.4
  * Author: ThemeKraft
  * Author URI: https://themekraft.com/buddyforms/
  * License: GPLv2 or later
- * Network: false
  * Text Domain: buddyforms-ultimate-member
  * Domain Path: /languages
  * Svn: buddyforms-ultimate-member
@@ -29,6 +30,10 @@
  *
  *****************************************************************************
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 add_action( 'init', 'buddyforms_ultimate_members_init' );
 

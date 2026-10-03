@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 // Create the Form Builder Sidebar Metabox
 function buddyforms_ultimate_members_admin_settings_sidebar_metabox() {
 	add_meta_box( 'buddyforms_ultimate_members', 'Ultimate Members', 'buddyforms_ultimate_members_admin_settings_sidebar_metabox_html', 'buddyforms', 'normal', 'low' );
@@ -122,7 +126,7 @@ function buddyforms_ultimate_members_admin_settings_sidebar_metabox_html() {
 	$form_setup[] = $element;
 
 	$global_setting_page = admin_url( 'edit.php?post_type=buddyforms&page=buddyforms_settings&tab=buddyforms_ultimate_member' );
-	$form_setup[]        = new Element_HTML( sprintf( __( 'The options to add <b>Moderation</b> and <b>Collaborative Posts</b> Tabs to the Profile is now inside the settings <a target="_blank" href="%s"> here!</a>', 'buddyforms-ultimate-member' ), $global_setting_page ), '<b>' . __( 'Add Moderation Tab to the Profile', 'buddyforms-ultimate-member' ) . '</b>' );
+	$form_setup[]        = new Element_HTML( sprintf( /* translators: %s: URL of the BuddyForms Ultimate Member settings tab. */ __( 'The options to add <b>Moderation</b> and <b>Collaborative Posts</b> Tabs to the Profile is now inside the settings <a target="_blank" href="%s"> here!</a>', 'buddyforms-ultimate-member' ), $global_setting_page ), '<b>' . __( 'Add Moderation Tab to the Profile', 'buddyforms-ultimate-member' ) . '</b>' );
 
 	buddyforms_display_field_group_table( $form_setup );
 
