@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 //
 // Load all needed css and js
 // @todo: this should not be global.
@@ -160,7 +164,7 @@ function buddyforms_um_next_posts_link( $link, $form_slug ) {
 	}
 
 	$page = ! empty( $_GET['bf_um_page'] ) ? ( (int) $_GET['bf_um_page'] + 1 ) : 2;
-	$link = '<a href="' . add_query_arg( 'bf_um_page', $page ) . '">&larr;' . __( 'Previos Entries ', 'buddyforms' ) . '</a>';
+	$link = '<a href="' . add_query_arg( 'bf_um_page', $page ) . '">&larr;' . __( 'Previos Entries ', 'buddyforms-ultimate-member' ) . '</a>';
 
 	return $link;
 }
@@ -180,7 +184,7 @@ function buddyforms_um_previos_posts_link( $link, $form_slug ) {
 	}
 
 	$page = (int) $_GET['bf_um_page'] - 1;
-	$link = '<a href="' . add_query_arg( 'bf_um_page', $page ) . '">' . __( 'Next Entries', 'buddyforms' ) . '&rarr;</a>';
+	$link = '<a href="' . add_query_arg( 'bf_um_page', $page ) . '">' . __( 'Next Entries', 'buddyforms-ultimate-member' ) . '&rarr;</a>';
 
 	return $link;
 }

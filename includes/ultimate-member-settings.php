@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 function buddyforms_ultimate_members_admin_tab( $tabs ) {
 	if ( ! defined( 'BUDDYFORMS_ULTIMATE_MEMBER_ASSETS' ) ) {
 		return $tabs;
@@ -92,7 +96,7 @@ function buddyforms_ultimate_members_admin_tab_page( $tab ) {
 
 							<tr>
 								<th colspan="2">
-									<small><?php echo sprintf( esc_html__( 'For more privacy options check inside the UM Profile Member <a target="_blank" href="%s">here!</a>', 'buddyforms-ultimate-member' ), esc_url( get_admin_url( get_current_blog_id(), 'admin.php?page=um_options&tab=appearance&section=profile_menu' ) ) ); ?> </small>
+									<small><?php echo sprintf( /* translators: %s: URL of the Ultimate Member profile menu settings. */ esc_html__( 'For more privacy options check inside the UM Profile Member <a target="_blank" href="%s">here!</a>', 'buddyforms-ultimate-member' ), esc_url( get_admin_url( get_current_blog_id(), 'admin.php?page=um_options&tab=appearance&section=profile_menu' ) ) ); ?> </small>
 								</th>
 							</tr>
 
@@ -126,7 +130,7 @@ function buddyforms_ultimate_members_admin_tab_page( $tab ) {
 
 							<tr>
 								<th colspan="2">
-									<small><?php echo sprintf( esc_html__( 'For more privacy options check inside the UM Profile Member <a target="_blank" href="%s">here!</a>', 'buddyforms-ultimate-member' ), esc_url( get_admin_url( get_current_blog_id(), 'admin.php?page=um_options&tab=appearance&section=profile_menu' ) ) ); ?> </small>
+									<small><?php echo sprintf( /* translators: %s: URL of the Ultimate Member profile menu settings. */ esc_html__( 'For more privacy options check inside the UM Profile Member <a target="_blank" href="%s">here!</a>', 'buddyforms-ultimate-member' ), esc_url( get_admin_url( get_current_blog_id(), 'admin.php?page=um_options&tab=appearance&section=profile_menu' ) ) ); ?> </small>
 								</th>
 							</tr>
 

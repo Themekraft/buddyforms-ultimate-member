@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_filter( 'init', 'buddyforms_cpublishing_ultimate_member_integration', 9999 );
 
 function buddyforms_cpublishing_ultimate_member_integration() {
