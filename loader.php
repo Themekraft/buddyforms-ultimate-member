@@ -87,6 +87,10 @@ function buddyforms_ultimate_update_new_version_136() {
 	$updated_136 = get_option( 'buddyforms_ultimate_member_update_136', false );
 	if ( empty( $updated_136 ) ) {
 		global $buddyforms;
+		// Forms are not loaded yet: try again on a later request instead of saving empty settings.
+		if ( empty( $buddyforms ) || ! is_array( $buddyforms ) ) {
+			return;
+		}
 		$integrate_moderation   = false;
 		$integrate_cpublisching = false;
 		foreach ( $buddyforms as $form_slug => $buddyform ) {
@@ -101,7 +105,10 @@ function buddyforms_ultimate_update_new_version_136() {
 				break;
 			}
 		}
-		$new_option = array();
+		$new_option = get_option( 'buddyforms_ultimate_settings', array() );
+		if ( ! is_array( $new_option ) ) {
+			$new_option = array();
+		}
 		if ( $integrate_moderation ) {
 			$new_option['moderation_tab'] = 'activate';
 		}
