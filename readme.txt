@@ -1,10 +1,11 @@
 === BuddyForms Ultimate Member ===
 Contributors: svenl77, konradS, buddyforms, themekraft, gfirem
 Tags: BuddyForms, Ultimate Member, forms, form, custom form, custom forms, form administration, form builder, form creation, form creator, form manager, forms, forms builder, forms creation, forms creator, forms manager
-Requires at least: 3.9
-Tested up to: 6.1.1
+Requires at least: 5.9
+Tested up to: 7.1
 License: GPLv2 or later
-Stable tag: 1.3.16
+Requires PHP: 7.4
+Stable tag: 1.3.19
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Submit and Manage Posts from your Ultimate Member Profile. Create Forms with an easy to use Form Builder! Create Tabs - Group Forms. Works with any PostType Plugin and Theme.
@@ -90,6 +91,20 @@ BuddyForms and Ultimate Member
 1. **Create and Edit Posts from the Ultimate Member Profile**
 
 == Changelog ==
+= 1.3.19 - 03 Oct 2026 =
+* Required plugins are now declared with the WordPress "Requires Plugins" header instead of the bundled TGM Plugin Activation library.
+* The 1.3.6 settings migration no longer clears saved settings when no forms exist yet.
+* Fixed translations: every string now uses the plugin's own text domain.
+* Requires WordPress 5.9 and PHP 7.4. Tested up to WordPress 7.1.
+
+= 1.3.18 - 19 Nov 2023 =
+* Updated Freemius SDK.
+* Tested up to WordPress 6.4.1
+
+= 1.3.17 - 18 May 2023 =
+* Updated plugin dependency.
+* Tested up to WordPress 6.2.1
+
 = 1.3.16 - 25 Dec 2022 =
 * Enabled trial version.
 * Tested up to WordPress 6.1.1

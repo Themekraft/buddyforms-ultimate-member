@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 // Add a custom tabs to the profile
 add_filter( 'um_profile_tabs', 'bf_profile_tabs', 2000 );
 add_filter( 'um_user_profile_tabs', 'bf_profile_tabs', 2000 );
