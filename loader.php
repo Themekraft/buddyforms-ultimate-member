@@ -146,10 +146,6 @@ function buddyforms_um_fs() {
 				// If your addon is a serviceware, set this option to false.
 				'has_premium_version' => true,
 				'has_paid_plans'      => true,
-				'trial'               => array(
-                    'days'               => 7,
-                    'is_require_payment' => true,
-                ),
 				'parent'              => array(
 					'id'         => '391',
 					'slug'       => 'buddyforms',

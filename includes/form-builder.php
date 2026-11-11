@@ -71,9 +71,6 @@ function buddyforms_ultimate_members_admin_settings_sidebar_metabox_html() {
 				'shortDesc' => __( 'List submissions in the social activity wall', 'buddyforms-ultimate-member' ),
 			)
 		);
-		if ( buddyforms_um_fs()->is_not_paying() && ! buddyforms_um_fs()->is_trial() ) {
-			$element->setAttribute( 'disabled', 'disabled' );
-		}
 		$form_setup[] = $element;
 
 	}
@@ -92,9 +89,6 @@ function buddyforms_ultimate_members_admin_settings_sidebar_metabox_html() {
 			'shortDesc' => __( 'Who can see submissions in Profiles?', 'buddyforms-ultimate-member' ),
 		)
 	);
-	if ( buddyforms_um_fs()->is_not_paying() && ! buddyforms_um_fs()->is_trial() ) {
-		$element->setAttribute( 'disabled', 'disabled' );
-	}
 	$form_setup[] = $element;
 
 	$um_profile_menu_label = isset( $buddyform['um_profile_menu_label'] ) ? $buddyform['um_profile_menu_label'] : '';
@@ -106,9 +100,6 @@ function buddyforms_ultimate_members_admin_settings_sidebar_metabox_html() {
 			'shortDesc' => __( 'Profile Tab Label', 'buddyforms-ultimate-member' ),
 		)
 	);
-	if ( buddyforms_um_fs()->is_not_paying() && ! buddyforms_um_fs()->is_trial() ) {
-		$element->setAttribute( 'disabled', 'disabled' );
-	}
 	$form_setup[] = $element;
 
 	$um_profile_menu_icon = isset( $buddyform['um_profile_menu_icon'] ) ? $buddyform['um_profile_menu_icon'] : 'um-faicon-pencil';
@@ -120,9 +111,6 @@ function buddyforms_ultimate_members_admin_settings_sidebar_metabox_html() {
 			'shortDesc' => __( 'Ultimate Member profile menu item. List off all <a href="https://gist.github.com/plusplugins/b504b6851cb3a8a6166585073f3110dd" target="_blank">UM Favicon Icons</a>', 'buddyforms-ultimate-member' ),
 		)
 	);
-	if ( buddyforms_um_fs()->is_not_paying() && ! buddyforms_um_fs()->is_trial() ) {
-		$element->setAttribute( 'disabled', 'disabled' );
-	}
 	$form_setup[] = $element;
 
 	$global_setting_page = admin_url( 'edit.php?post_type=buddyforms&page=buddyforms_settings&tab=buddyforms_ultimate_member' );
