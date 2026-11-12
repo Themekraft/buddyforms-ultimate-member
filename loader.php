@@ -3,7 +3,7 @@
  * Plugin Name: BuddyForms Ultimate Member
  * Plugin URI: https://themekraft.com/products/ultimate-member/
  * Description: Extend Ultimate Member Profiles with BuddyForms
- * Version: 1.3.19
+ * Version: 1.3.20
  * Requires at least: 5.9
  * Requires PHP: 7.4
  * Requires Plugins: buddyforms, ultimate-member
@@ -146,10 +146,6 @@ function buddyforms_um_fs() {
 				// If your addon is a serviceware, set this option to false.
 				'has_premium_version' => true,
 				'has_paid_plans'      => true,
-				'trial'               => array(
-                    'days'               => 7,
-                    'is_require_payment' => true,
-                ),
 				'parent'              => array(
 					'id'         => '391',
 					'slug'       => 'buddyforms',
