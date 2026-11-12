@@ -5,7 +5,7 @@ Requires at least: 5.9
 Tested up to: 7.1
 License: GPLv2 or later
 Requires PHP: 7.4
-Stable tag: 1.3.20-beta.2
+Stable tag: 1.3.20
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Submit and Manage Posts from your Ultimate Member Profile. Create Forms with an easy to use Form Builder! Create Tabs - Group Forms. Works with any PostType Plugin and Theme.
@@ -91,6 +91,9 @@ BuddyForms and Ultimate Member
 1. **Create and Edit Posts from the Ultimate Member Profile**
 
 == Changelog ==
+= 1.3.20 - 12 Nov 2026 =
+* Every Ultimate Member option in the form builder is now available without a license.
+
 = 1.3.19 - 03 Oct 2026 =
 * Required plugins are now declared with the WordPress "Requires Plugins" header instead of the bundled TGM Plugin Activation library.
 * The 1.3.6 settings migration no longer clears saved settings when no forms exist yet.
