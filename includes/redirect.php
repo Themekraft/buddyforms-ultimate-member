@@ -10,14 +10,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package BuddyForms
  * @since 0.3 beta
  */
-function bf_ultimate_member_redirect_to_profile() {
+function buddyforms_ultimate_member_redirect_to_profile() {
 	global $post;
 
 	if ( ! isset( $post->ID ) || ! is_user_logged_in() ) {
 		return false;
 	}
 
-	$link = bf_ultimate_member_get_redirect_link( $post->ID );
+	$link = buddyforms_ultimate_member_get_redirect_link( $post->ID );
 
 	if ( ! empty( $link ) ) :
 		wp_safe_redirect( $link );
@@ -25,7 +25,7 @@ function bf_ultimate_member_redirect_to_profile() {
 	endif;
 }
 
-add_action( 'template_redirect', 'bf_ultimate_member_redirect_to_profile', 999 );
+add_action( 'template_redirect', 'buddyforms_ultimate_member_redirect_to_profile', 999 );
 
 /**
  * Get the redirect link
@@ -33,7 +33,7 @@ add_action( 'template_redirect', 'bf_ultimate_member_redirect_to_profile', 999 )
  * @package BuddyForms
  * @since 0.3 beta
  */
-function bf_ultimate_member_get_redirect_link( $id = false ) {
+function buddyforms_ultimate_member_get_redirect_link( $id = false ) {
 	global $buddyforms, $wp_query, $current_user;
 
 	if ( ! $id ) {
@@ -50,7 +50,7 @@ function bf_ultimate_member_get_redirect_link( $id = false ) {
 		return false;
 	}
 
-	$parent_tab = bf_ultimate_member_parent_tab( $buddyforms[ $form_slug ] );
+	$parent_tab = buddyforms_ultimate_member_parent_tab( $buddyforms[ $form_slug ] );
 
 	$link = '';
 	if ( isset( $buddyforms ) && is_array( $buddyforms ) && isset( $parent_tab ) ) {
@@ -100,7 +100,25 @@ function bf_ultimate_member_get_redirect_link( $id = false ) {
 		}
 	}
 
-	return apply_filters( 'bf_ultimate_member_get_redirect_link', $link );
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- deprecated hook name, kept for backward compatibility until a future major release.
+	$link = apply_filters_deprecated( 'bf_ultimate_member_get_redirect_link', array( $link ), '1.3.22', 'buddyforms_ultimate_member_get_redirect_link' );
+
+	return apply_filters( 'buddyforms_ultimate_member_get_redirect_link', $link );
+}
+
+/**
+ * Get the redirect link.
+ *
+ * @deprecated 1.3.22 Use buddyforms_ultimate_member_get_redirect_link() instead.
+ *
+ * @param int|false $id Page ID.
+ * @return string
+ */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- deprecated alias of the prefixed function, kept for backward compatibility until a future major release.
+function bf_ultimate_member_get_redirect_link( $id = false ) {
+	_deprecated_function( __FUNCTION__, '1.3.22', 'buddyforms_ultimate_member_get_redirect_link()' );
+
+	return buddyforms_ultimate_member_get_redirect_link( $id );
 }
 
 /**
@@ -112,26 +130,29 @@ function bf_ultimate_member_get_redirect_link( $id = false ) {
  * @uses    is_page()
  * @uses    bp_loggedin_user_domain()
  */
-function bf_ultimate_member_page_link_router( $link, $id ) {
+function buddyforms_ultimate_member_page_link_router( $link, $id ) {
 	if ( ! is_user_logged_in() || is_admin() ) {
 		return $link;
 	}
 
-	$new_link = bf_ultimate_member_get_redirect_link( $id );
+	$new_link = buddyforms_ultimate_member_get_redirect_link( $id );
 
 	if ( ! empty( $new_link ) ) {
 		$link = $new_link;
 	}
 
-	return apply_filters( 'bf_ultimate_member_page_link_router', $link );
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- deprecated hook name, kept for backward compatibility until a future major release.
+	$link = apply_filters_deprecated( 'bf_ultimate_member_page_link_router', array( $link ), '1.3.22', 'buddyforms_ultimate_member_page_link_router' );
+
+	return apply_filters( 'buddyforms_ultimate_member_page_link_router', $link );
 }
 
-add_filter( 'page_link', 'bf_ultimate_member_page_link_router', 10, 2 );
+add_filter( 'page_link', 'buddyforms_ultimate_member_page_link_router', 10, 2 );
 
 //
 // Link Router for the Loop
 //
-function bf_ultimate_member_page_link_router_edit( $link, $id ) {
+function buddyforms_ultimate_member_page_link_router_edit( $link, $id ) {
 	global $buddyforms, $current_user;
 
 	$form_slug  = get_post_meta( $id, '_bf_form_slug', true );
@@ -151,7 +172,7 @@ function bf_ultimate_member_page_link_router_edit( $link, $id ) {
 		return $link;
 	}
 
-	$parent_tab = bf_ultimate_member_parent_tab( $buddyforms[ $form_slug ] );
+	$parent_tab = buddyforms_ultimate_member_parent_tab( $buddyforms[ $form_slug ] );
 
 	$current_user = wp_get_current_user();
 	$userdata     = get_userdata( $current_user->ID );
@@ -161,4 +182,4 @@ function bf_ultimate_member_page_link_router_edit( $link, $id ) {
 	return '<a title="Edit" id="' . $id . '" class="bf_edit_post" href="' . $link_href . '">' . __( 'Edit', 'buddyforms-ultimate-member' ) . '</a>';
 }
 
-add_filter( 'buddyforms_loop_edit_post_link', 'bf_ultimate_member_page_link_router_edit', 20, 2 );
+add_filter( 'buddyforms_loop_edit_post_link', 'buddyforms_ultimate_member_page_link_router_edit', 20, 2 );

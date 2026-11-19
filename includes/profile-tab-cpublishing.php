@@ -70,10 +70,10 @@ function buddyforms_cpublishing_um_add_tab_visibility( $tabs ) {
 // add_filter( 'um_user_profile_tabs', 'buddyforms_cpublishing_um_add_tab_visibility', 2000, 1 );
 
 // Action
-function um_profile_content_buddyforms_cpublishing_default( $args ) {
+function buddyforms_um_profile_content_cpublishing_default( $args ) {
 	if ( ! empty( $GLOBALS['BuddyFormsCPublishing'] ) ) {
 		echo do_shortcode( '[buddyforms_list_editor_posts]' );
 	}
 }
 
-add_action( 'um_profile_content_buddyforms_cpublishing_default', 'um_profile_content_buddyforms_cpublishing_default' );
+add_action( 'um_profile_content_buddyforms_cpublishing_default', 'buddyforms_um_profile_content_cpublishing_default' );

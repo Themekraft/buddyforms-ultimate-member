@@ -8,18 +8,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Load all needed css and js
 // @todo: this should not be global.
 //
-function bf_um_front_js_css_loader( $fount ) {
+function buddyforms_um_front_js_css_loader( $fount ) {
 	return true;
 }
 
-add_filter( 'buddyforms_front_js_css_loader', 'bf_um_front_js_css_loader', 10, 1 );
+add_filter( 'buddyforms_front_js_css_loader', 'buddyforms_um_front_js_css_loader', 10, 1 );
 
 //
 // Helper function to get the parent slug for the profil navigation
 // Coppy of function rewrite_rules /ultimate-member/core/um-rewrite.php line 31
 // @todo: crearte a pull request to fire the rewrire function if set to not load automaticaly...?!
 
-function bf_ultimate_member_parent_tab( $member_form ) {
+function buddyforms_ultimate_member_parent_tab( $member_form ) {
 
 	// By default use the form slug for the tab
 	$parent_tab_name = $member_form['slug'];
@@ -37,6 +37,21 @@ function bf_ultimate_member_parent_tab( $member_form ) {
 	}
 
 	return str_replace( '-', '', $parent_tab_name );
+}
+
+/**
+ * Get the parent tab slug of a form for the profile navigation.
+ *
+ * @deprecated 1.3.22 Use buddyforms_ultimate_member_parent_tab() instead.
+ *
+ * @param array $member_form Form options.
+ * @return string
+ */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- deprecated alias of the prefixed function, kept for backward compatibility until a future major release.
+function bf_ultimate_member_parent_tab( $member_form ) {
+	_deprecated_function( __FUNCTION__, '1.3.22', 'buddyforms_ultimate_member_parent_tab()' );
+
+	return buddyforms_ultimate_member_parent_tab( $member_form );
 }
 
 //
@@ -153,7 +168,7 @@ add_filter( 'buddyforms_next_posts_link', 'buddyforms_um_next_posts_link', 10, 2
 function buddyforms_um_next_posts_link( $link, $form_slug ) {
 	global $buddyforms;
 
-	$parent_tab = bf_ultimate_member_parent_tab( $buddyforms[ $form_slug ] );
+	$parent_tab = buddyforms_ultimate_member_parent_tab( $buddyforms[ $form_slug ] );
 
 	if ( ! isset( $_GET['profiletab'] ) ) {
 		return $link;
@@ -173,7 +188,7 @@ add_filter( 'buddyforms_previos_posts_link', 'buddyforms_um_previos_posts_link',
 function buddyforms_um_previos_posts_link( $link, $form_slug ) {
 	global $buddyforms;
 
-	$parent_tab = bf_ultimate_member_parent_tab( $buddyforms[ $form_slug ] );
+	$parent_tab = buddyforms_ultimate_member_parent_tab( $buddyforms[ $form_slug ] );
 
 	if ( ! isset( $_GET['profiletab'] ) ) {
 		return $link;

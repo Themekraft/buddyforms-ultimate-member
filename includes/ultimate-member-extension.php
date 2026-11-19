@@ -5,10 +5,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Add a custom tabs to the profile
-add_filter( 'um_profile_tabs', 'bf_profile_tabs', 2000 );
-add_filter( 'um_user_profile_tabs', 'bf_profile_tabs', 2000 );
+add_filter( 'um_profile_tabs', 'buddyforms_um_profile_tabs', 2000 );
+add_filter( 'um_user_profile_tabs', 'buddyforms_um_profile_tabs', 2000 );
 
-function bf_profile_tabs( $tabs ) {
+function buddyforms_um_profile_tabs( $tabs ) {
 	global $buddyforms, $bf_um_tabs, $bf_um_form_slug;
 
 	// run through all forms and check if they should get integrated
@@ -34,7 +34,7 @@ function bf_profile_tabs( $tabs ) {
 				}
 
 				// Set the Tap slug
-				$parent_tab_slug = bf_ultimate_member_parent_tab( $form );
+				$parent_tab_slug = buddyforms_ultimate_member_parent_tab( $form );
 
 				// Set the Tab name
 				$parent_tab_name = $form['name'];
@@ -65,7 +65,7 @@ function bf_profile_tabs( $tabs ) {
 					$tabs[ $parent_tab_slug ]['subnav_default'] = 'posts-' . $form_slug;
 					$bf_um_tabs                                 = $tabs;
 
-					add_action( 'um_profile_content_' . $parent_tab_slug . '_default', 'bf_profile_tabs_content', 1, 10 );
+					add_action( 'um_profile_content_' . $parent_tab_slug . '_default', 'buddyforms_um_profile_tabs_content', 1, 10 );
 
 				}
 
@@ -73,7 +73,9 @@ function bf_profile_tabs( $tabs ) {
 
 				// Add the Subtabs to the Ultimate Member Menue
 				$tab_view_name = __( 'View ', 'buddyforms-ultimate-member' ) . $tab_name;
-				$tabs[ $parent_tab_slug ]['subnav'][ 'posts-' . $form_slug ] = apply_filters( 'bf_ultimate_member_view_tab_name', $tab_view_name, $form_slug );
+				// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- deprecated hook name, kept for backward compatibility until a future major release.
+				$tab_view_name = apply_filters_deprecated( 'bf_ultimate_member_view_tab_name', array( $tab_view_name, $form_slug ), '1.3.22', 'buddyforms_ultimate_member_view_tab_name' );
+				$tabs[ $parent_tab_slug ]['subnav'][ 'posts-' . $form_slug ] = apply_filters( 'buddyforms_ultimate_member_view_tab_name', $tab_view_name, $form_slug );
 
 				// Add the Subtab for the create only if diplayd profil is from loged in user.
 				if ( um_is_user_himself() ) {
@@ -82,13 +84,15 @@ function bf_profile_tabs( $tabs ) {
 					$current_user_can_create = bf_user_can( $current_user_id, 'buddyforms_' . $form_slug . '_create', array(), $form_slug );
 					if ( $current_user_can_create ) {
 						$tab_form_name = __( 'Create ', 'buddyforms-ultimate-member' ) . $tab_name;
-						$tabs[ $parent_tab_slug ]['subnav'][ 'form-' . $form_slug ] = apply_filters( 'bf_ultimate_member_form_tab_name', $tab_form_name, $form_slug );
+						// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- deprecated hook name, kept for backward compatibility until a future major release.
+						$tab_form_name = apply_filters_deprecated( 'bf_ultimate_member_form_tab_name', array( $tab_form_name, $form_slug ), '1.3.22', 'buddyforms_ultimate_member_form_tab_name' );
+						$tabs[ $parent_tab_slug ]['subnav'][ 'form-' . $form_slug ] = apply_filters( 'buddyforms_ultimate_member_form_tab_name', $tab_form_name, $form_slug );
 					}
 				}
 
 				// Hook the content into the coret tabs
-				add_action( 'um_profile_content_' . $parent_tab_slug . '_posts-' . $form_slug, 'bf_profile_tabs_content' );
-				add_action( 'um_profile_content_' . $parent_tab_slug . '_form-' . $form_slug, 'bf_profile_tabs_content' );
+				add_action( 'um_profile_content_' . $parent_tab_slug . '_posts-' . $form_slug, 'buddyforms_um_profile_tabs_content' );
+				add_action( 'um_profile_content_' . $parent_tab_slug . '_form-' . $form_slug, 'buddyforms_um_profile_tabs_content' );
 
 			}
 		}
@@ -102,7 +106,7 @@ function bf_profile_tabs( $tabs ) {
 //
 // Display the Tab Content
 //
-function bf_profile_tabs_content( $subnav_defalt ) {
+function buddyforms_um_profile_tabs_content( $subnav_defalt ) {
 	global $bf_um_tabs;
 
 	if ( ! isset( $_GET['profiletab'] ) ) {
@@ -171,7 +175,7 @@ function bf_profile_tabs_content( $subnav_defalt ) {
  * @return mixed
  * @since 1.3.4 Change the url for the subnav link to differentiate the create from edit
  */
-function bf_um_profile_subnav_link( $subnav_link, $id_s, $subtab ) {
+function buddyforms_um_profile_subnav_link( $subnav_link, $id_s, $subtab ) {
 	$id_array     = explode( '-', $id_s );
 	$tab_type     = $id_array[0];
 	$bf_um_action = get_query_var( 'bf_um_action', $subnav_link );
@@ -183,5 +187,5 @@ function bf_um_profile_subnav_link( $subnav_link, $id_s, $subtab ) {
 	return $subnav_link;
 }
 
-add_filter( 'um_user_profile_subnav_link', 'bf_um_profile_subnav_link', 2000, 3 );
+add_filter( 'um_user_profile_subnav_link', 'buddyforms_um_profile_subnav_link', 2000, 3 );
 
