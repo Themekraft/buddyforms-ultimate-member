@@ -104,6 +104,7 @@ function bf_profile_tabs( $tabs ) {
 //
 function bf_profile_tabs_content( $subnav_defalt ) {
 	global $bf_um_tabs;
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended -- read-only profile tab/subnav/page params that choose what to display; form submissions are verified by BuddyForms.
 
 	if ( ! isset( $_GET['profiletab'] ) ) {
 		return;
@@ -158,6 +159,7 @@ function bf_profile_tabs_content( $subnav_defalt ) {
 
 			buddyforms_create_edit_form( $args );
 		}
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 	}
 }
 
