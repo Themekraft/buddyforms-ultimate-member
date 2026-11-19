@@ -3,7 +3,7 @@
  * Plugin Name: BuddyForms Ultimate Member
  * Plugin URI: https://themekraft.com/products/ultimate-member/
  * Description: Extend Ultimate Member Profiles with BuddyForms
- * Version: 1.3.20
+ * Version: 1.3.21
  * Requires at least: 5.9
  * Requires PHP: 7.4
  * Requires Plugins: buddyforms, ultimate-member
@@ -127,13 +127,9 @@ function buddyforms_um_fs() {
 	global $buddyforms_um_fs;
 
 	if ( ! isset( $buddyforms_um_fs ) ) {
-		// Include Freemius SDK.
-		if ( file_exists( dirname( dirname( __FILE__ ) ) . '/buddyforms/includes/resources/freemius/start.php' ) ) {
-			// Try to load SDK from parent plugin folder.
-			require_once dirname( dirname( __FILE__ ) ) . '/buddyforms/includes/resources/freemius/start.php';
-		} elseif ( file_exists( dirname( dirname( __FILE__ ) ) . '/buddyforms-premium/includes/resources/freemius/start.php' ) ) {
-			// Try to load SDK from premium parent plugin folder.
-			require_once dirname( dirname( __FILE__ ) ) . '/buddyforms-premium/includes/resources/freemius/start.php';
+		// The Freemius SDK comes with BuddyForms, which loads it before this add-on initializes.
+		if ( ! function_exists( 'fs_dynamic_init' ) ) {
+			return false;
 		}
 
 		$buddyforms_um_fs = fs_dynamic_init(

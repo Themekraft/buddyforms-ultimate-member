@@ -53,7 +53,7 @@ add_action( 'buddyforms_process_submission_end', 'buddyforms_um_add_new_submissi
 function buddyforms_um_add_new_submissions_to_the_um_activity_component( $args ) {
 	global $buddyforms;
 
-	$post_id   = $args['post_id'];
+	$post_id   = isset( $args['post_id'] ) ? $args['post_id'] : null;
 	$form_slug = $args['form_slug'];
 
 	if ( ! defined( 'um_activity_url' ) ) {
