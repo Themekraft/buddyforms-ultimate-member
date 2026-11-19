@@ -10,6 +10,7 @@
  * Author: ThemeKraft
  * Author URI: https://themekraft.com/buddyforms/
  * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: buddyforms-ultimate-member
  * Domain Path: /languages
  * Svn: buddyforms-ultimate-member
