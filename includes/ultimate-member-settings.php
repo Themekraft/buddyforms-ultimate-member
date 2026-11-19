@@ -80,7 +80,7 @@ function buddyforms_ultimate_members_admin_tab_page( $tab ) {
 								<td class="forminp forminp-select">
 									<select name="buddyforms_ultimate_settings[moderation_tab]" id="buddyforms_ultimate_settings_moderation_tab">
 										<?php foreach ( $options as $item_key => $item_name ) : ?>
-											<option value="<?php echo esc_attr( $item_key ); ?>" <?php selected( $item_key, $ultimate_members_settings['moderation_tab'] ); ?> ><?php echo esc_html( $item_name ); ?></option>
+											<option value="<?php echo esc_attr( $item_key ); ?>" <?php selected( $item_key, isset( $ultimate_members_settings['moderation_tab'] ) ? $ultimate_members_settings['moderation_tab'] : '' ); ?> ><?php echo esc_html( $item_name ); ?></option>
 										<?php endforeach; ?>
 									</select>
 								</td>
@@ -114,7 +114,7 @@ function buddyforms_ultimate_members_admin_tab_page( $tab ) {
 								<td class="forminp forminp-select">
 									<select name="buddyforms_ultimate_settings[collaborative_post_tab]" id="buddyforms_ultimate_settings_collaborative_post_tab">
 										<?php foreach ( $options as $item_key => $item_name ) : ?>
-											<option value="<?php echo esc_attr( $item_key ); ?>" <?php selected( $item_key, $ultimate_members_settings['collaborative_post_tab'] ); ?> ><?php echo esc_html( $item_name ); ?></option>
+											<option value="<?php echo esc_attr( $item_key ); ?>" <?php selected( $item_key, isset( $ultimate_members_settings['collaborative_post_tab'] ) ? $ultimate_members_settings['collaborative_post_tab'] : '' ); ?> ><?php echo esc_html( $item_name ); ?></option>
 										<?php endforeach; ?>
 									</select>
 								</td>

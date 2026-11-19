@@ -59,10 +59,12 @@ function bf_ultimate_member_get_redirect_link( $id = false ) {
 			$attached_page_id = $buddyforms[ $form_slug ]['attached_page'];
 		}
 
-		// Only create a new url if the profile inetgration is enabled and the corect attached page displayed.
-		if ( isset( $buddyforms[ $form_slug ]['ultimate_members_profiles_integration'] ) && isset( $attached_page_id ) && $attached_page_id == $id ) {
+		$um_options = get_option( 'um_options' );
 
-			$um_options = get_option( 'um_options' );
+		// Only create a new url if the profile inetgration is enabled and the corect attached page displayed.
+		// Without the Ultimate Member user page, get_the_permalink() below would return the attached page
+		// itself and this page_link filter would call itself until PHP runs out of memory.
+		if ( isset( $buddyforms[ $form_slug ]['ultimate_members_profiles_integration'] ) && isset( $attached_page_id ) && $attached_page_id == $id && ! empty( $um_options['core_user'] ) ) {
 
 			$current_user = wp_get_current_user();
 			$userdata     = get_userdata( $current_user->ID );
@@ -142,6 +144,10 @@ function bf_ultimate_member_page_link_router_edit( $link, $id ) {
 	}
 
 	if ( empty( $form_settings['ultimate_members_profiles_integration'] ) || ( ! empty( $form_settings['ultimate_members_profiles_integration'] ) && $form_settings['ultimate_members_profiles_integration'][0] !== 'integrate' ) ) {
+		return $link;
+	}
+
+	if ( empty( $um_options['core_user'] ) ) {
 		return $link;
 	}
 
