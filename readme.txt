@@ -5,7 +5,7 @@ Requires at least: 5.9
 Tested up to: 7.1
 License: GPLv2 or later
 Requires PHP: 7.4
-Stable tag: 1.3.20
+Stable tag: 1.3.21
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Submit and Manage Posts from your Ultimate Member Profile. Create Forms with an easy to use Form Builder! Create Tabs - Group Forms. Works with any PostType Plugin and Theme.
@@ -91,6 +91,11 @@ BuddyForms and Ultimate Member
 1. **Create and Edit Posts from the Ultimate Member Profile**
 
 == Changelog ==
+= 1.3.21 - 19 Nov 2026 =
+* Fixed a critical error on the form page when the Ultimate Member user page is not set yet.
+* Fixed PHP 8 warnings.
+* Removed unused code that tried to load the Freemius SDK from an old BuddyForms location.
+
 = 1.3.20 - 12 Nov 2026 =
 * Every Ultimate Member option in the form builder is now available without a license.
 
