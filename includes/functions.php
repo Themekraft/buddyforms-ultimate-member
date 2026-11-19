@@ -152,6 +152,7 @@ add_filter( 'buddyforms_create_submission_link', 'buddyforms_moderation_create_s
 add_filter( 'buddyforms_next_posts_link', 'buddyforms_um_next_posts_link', 10, 2 );
 function buddyforms_um_next_posts_link( $link, $form_slug ) {
 	global $buddyforms;
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended -- read-only profiletab/bf_um_page params used to build a pagination link.
 
 	$parent_tab = bf_ultimate_member_parent_tab( $buddyforms[ $form_slug ] );
 
@@ -166,12 +167,14 @@ function buddyforms_um_next_posts_link( $link, $form_slug ) {
 	$page = ! empty( $_GET['bf_um_page'] ) ? ( (int) $_GET['bf_um_page'] + 1 ) : 2;
 	$link = '<a href="' . add_query_arg( 'bf_um_page', $page ) . '">&larr;' . __( 'Previos Entries ', 'buddyforms-ultimate-member' ) . '</a>';
 
+	// phpcs:enable WordPress.Security.NonceVerification.Recommended
 	return $link;
 }
 
 add_filter( 'buddyforms_previos_posts_link', 'buddyforms_um_previos_posts_link', 10, 2 );
 function buddyforms_um_previos_posts_link( $link, $form_slug ) {
 	global $buddyforms;
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended -- read-only profiletab/bf_um_page params used to build a pagination link.
 
 	$parent_tab = bf_ultimate_member_parent_tab( $buddyforms[ $form_slug ] );
 
@@ -183,8 +186,9 @@ function buddyforms_um_previos_posts_link( $link, $form_slug ) {
 		return $link;
 	}
 
-	$page = (int) $_GET['bf_um_page'] - 1;
+	$page = ( isset( $_GET['bf_um_page'] ) ? (int) $_GET['bf_um_page'] : 0 ) - 1;
 	$link = '<a href="' . add_query_arg( 'bf_um_page', $page ) . '">' . __( 'Next Entries', 'buddyforms-ultimate-member' ) . '&rarr;</a>';
 
+	// phpcs:enable WordPress.Security.NonceVerification.Recommended
 	return $link;
 }

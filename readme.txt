@@ -1,6 +1,6 @@
 === BuddyForms Ultimate Member ===
 Contributors: svenl77, konradS, buddyforms, themekraft, gfirem
-Tags: BuddyForms, Ultimate Member, forms, form, custom form, custom forms, form administration, form builder, form creation, form creator, form manager, forms, forms builder, forms creation, forms creator, forms manager
+Tags: BuddyForms, Ultimate Member, forms, form builder, custom forms
 Requires at least: 5.9
 Tested up to: 7.1
 License: GPLv2 or later
@@ -8,7 +8,7 @@ Requires PHP: 7.4
 Stable tag: 1.3.21
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Submit and Manage Posts from your Ultimate Member Profile. Create Forms with an easy to use Form Builder! Create Tabs - Group Forms. Works with any PostType Plugin and Theme.
+Submit and Manage Posts from your Ultimate Member Profile. Create Forms with an easy to use Form Builder! Create Tabs - Group Forms.
 
 == Description ==
 
