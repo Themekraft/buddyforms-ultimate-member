@@ -64,6 +64,7 @@ function buddyforms_ultimate_members_init() {
 		return;
 	}
 
+	// phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound -- Kept on purpose: premium copies and builds not hosted on wordpress.org load their own translations from /languages.
 	load_plugin_textdomain( 'buddyforms-ultimate-member', false, basename( dirname( __FILE__ ) ) . '/languages' );
 
 	define( 'BUDDYFORMS_ULTIMATE_MEMBER_ASSETS', plugins_url( 'assets/', __FILE__ ) );
